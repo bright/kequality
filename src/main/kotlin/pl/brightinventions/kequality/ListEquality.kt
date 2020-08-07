@@ -11,10 +11,17 @@ class ListEquality<T>(
         }
 
         if (ignoreOrder) {
+            val availableItemsToCompare = o2.toMutableList()
+
             o1.forEach { item ->
-                o2.find { otherItem ->
+                val equalItemIndex = availableItemsToCompare.indexOfFirst { otherItem ->
                     itemEquality.areEqual(item, otherItem)
-                } ?: return false
+                }
+                if (equalItemIndex >= 0) {
+                    availableItemsToCompare.removeAt(equalItemIndex)
+                } else {
+                    return false
+                }
             }
         } else {
             o1.forEachIndexed { index, item ->

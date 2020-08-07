@@ -69,4 +69,21 @@ class ListEqualityTest {
             .areEqual(list2, list1)
             .shouldEqual(false)
     }
+
+    @Test
+    fun `lists having same objects with different propertions but same size should not equal`() {
+        val list1 = listOf(
+            Item("a"),
+            Item("a"),
+            Item("b")
+        )
+        val list2 = listOf(
+            Item("a"),
+            Item("b"),
+            Item("b")
+        )
+        ListEquality(regularItemEquality, true)
+            .areEqual(list1, list2)
+            .shouldEqual(false)
+    }
 }
