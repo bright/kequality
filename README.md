@@ -38,3 +38,24 @@ val regularPersonEquality = EqualsEquality<Person>()
 val peopleListEquality = ListEquality(regularPersonEquality, ignoreOrder = true)
 peopleListEquality.areEqual(people1, people2) // returns true
 ```
+
+### Check if objects are almost the same (except a single property) ###
+
+You can easily find out if objects are **almost** the same by excluding a single property from the equality check.
+All the other properties can be compared using the regular `equals` method.
+
+```kotlin
+data class Person(val name: String, val age: Int, val height: Int)
+
+val person1 = Person("Alice", 20, 175)
+val person2 = Person("Bob", 20, 175)
+
+val personEquality = CompositeEquality(
+    Person::class.declaredMemberProperties
+        .filterNot { it == Person::name }
+        .map { it.equalsEquality }
+)
+
+
+personEquality.areEqual(person1, person2) // returns true
+```
