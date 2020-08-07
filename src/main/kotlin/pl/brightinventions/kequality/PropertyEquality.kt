@@ -14,7 +14,7 @@ class PropertyEquality<T, R : Any?>(
 fun <T, R : Any?> KProperty1<T, R>.equalityBy(by: Equality<R>) =
     PropertyEquality(this, by)
 
-val <T> KProperty1<T, Any?>.regularEquality
+val <T> KProperty1<T, Any?>.equalsEquality
     get() = equalityBy(EqualsEquality())
 
 val <T, R : Comparable<R>> KProperty1<T, R>.comparableEquality

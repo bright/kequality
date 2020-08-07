@@ -8,13 +8,13 @@ fun <T> List<T>.equalsBy(other: List<T>, equality: Equality<T>, ignoreOrder: Boo
 }
 
 fun <T> List<T>.equalsBy(other: List<T>, vararg properties: KProperty1<T, Any?>): Boolean {
-    val equalities = properties.map { it.regularEquality }
+    val equalities = properties.map { it.equalsEquality }
     val composite = CompositeEquality(equalities)
     return equalsBy(other, composite, false)
 }
 
 fun <T> List<T>.equalsByIgnoreOrder(other: List<T>, vararg properties: KProperty1<T, Any?>): Boolean {
-    val equalities = properties.map { it.regularEquality }
+    val equalities = properties.map { it.equalsEquality }
     val composite = CompositeEquality(equalities)
     return equalsBy(other, composite, true)
 }
