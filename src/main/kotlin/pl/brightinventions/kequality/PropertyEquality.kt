@@ -19,3 +19,6 @@ val <T> KProperty1<T, Any?>.equalsEquality
 
 val <T, R : Comparable<R>> KProperty1<T, R>.comparableEquality
     get() = equalityBy(ComparableEquality())
+
+val <T, R : Comparable<R?>> KProperty1<T, R?>.comparableNullableEquality
+    get() = equalityBy(ComparableNullableEquality())
