@@ -10,7 +10,7 @@ allprojects {
 
     repositories {
         jcenter()
-        maven(Repositories.bintrayBright)
+        maven(Repositories.jitpack)
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -29,4 +29,5 @@ dependencies {
     testImplementation(Dependencies.kotlinTest)
     testImplementation(Dependencies.kotlinTestJunit)
     testImplementation(Dependencies.shouldko)
+    testImplementation(Dependencies.kotlinReflect)
 }
