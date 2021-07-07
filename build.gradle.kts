@@ -1,22 +1,30 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+    }
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
+        classpath(Dependencies.androidGradlePlugin)
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        google()
+        maven(Repositories.jitpack)
+    }
+}
+
 plugins {
     kotlin("jvm") version Versions.kotlin
     `java-library`
     id("default-java-publish")
 }
 
-allprojects {
-    group = Config.group
-    version = Config.version
-
-    repositories {
-        jcenter()
-        maven(Repositories.jitpack)
-    }
-
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = Config.jvmTarget
-    }
-}
+group = Config.group
+version = Config.version
 
 java {
     withJavadocJar()
@@ -31,3 +39,4 @@ dependencies {
     testImplementation(Dependencies.shouldko)
     testImplementation(Dependencies.kotlinReflect)
 }
+
