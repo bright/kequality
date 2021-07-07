@@ -16,7 +16,7 @@ repositories {
 
 Then, declare the dependency like:
 ```
-implementation("com.github.bright.kequality:1.0")
+implementation("com.github.bright.kequality:kequality:1.1")
 ```
 
 ## Usage examples ##
