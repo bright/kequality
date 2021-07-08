@@ -237,10 +237,10 @@ fun PersonDiffUtilCallback(oldItems: List<Person>, newItems: List<Person>): Diff
 #### Even shorter usage for simpler classes ####
 
 The examples above were based on the `Person` class that required
-customized equality check because `age` was `Comparable` so calling
+customized equality check because `age` was `BigDecimal` so calling
 `equals()` was not good enough.
 
-If you class doesn't need custom equality check and you can rely on
+If your class doesn't need custom equality check and you can rely on
 `equals()`, e.g.
 
 ```kotlin
