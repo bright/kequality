@@ -12,11 +12,10 @@ dependencies {
     api(rootProject)
     implementation(platform(Dependencies.kotlinBom))
     implementation(Dependencies.kotlinStdlib)
-    compileOnly(Dependencies.recyclerView)
+    implementation(Dependencies.recyclerView)
     testImplementation(Dependencies.kotlinTest)
     testImplementation(Dependencies.kotlinTestJunit)
     testImplementation(Dependencies.shouldko)
-    testImplementation(Dependencies.recyclerView)
 }
 
 afterEvaluate {
