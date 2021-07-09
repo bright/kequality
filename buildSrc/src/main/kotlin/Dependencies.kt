@@ -7,5 +7,9 @@ object Dependencies {
     const val shouldko = "com.github.miensol:shouldko:${Versions.shouldko}"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
+    const val androidBenchmarkGradlePlugin = "androidx.benchmark:benchmark-gradle-plugin:${Versions.androidBenchmark}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
+    const val androidTestRunner = "androidx.test:runner:${Versions.androidTestRunner}"
+    const val androidTestExtJunit = "androidx.test.ext:junit:${Versions.androidTestExtJunit}"
+    const val androidBenchmark = "androidx.benchmark:benchmark-junit4:${Versions.androidBenchmark}"
 }
