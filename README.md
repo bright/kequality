@@ -65,6 +65,16 @@ val PersonEquality = CompositeEquality(
 )
 ```
 
+or
+
+```kotlin
+val PersonEquality = Equality<Person> {
+    by { name }                         // uses Any.equals()
+    by(ComparableEquality()) { age }    // uses Comparable.compareTo()
+    by(AddressIgnoreCaseEquality) { address } // see above
+}
+```
+
 ### Check if two lists contain equal objects ignoring their order ###
 
 Regular `equals` comparison of two lists containing equal objects ordered differently returns `false`.
@@ -175,14 +185,14 @@ data class Person(
     val age: BigDecimal
 )
 
-val PersonIdEquality = CompositeEquality(
-    Person::id.equalsEquality
-)
+val PersonIdEquality = Equality<Person> {
+    by { id }
+}
 
-val PersonContentEquality = CompositeEquality(
-    Person::name.equalsEquality,
-    Person::age.comparableEquality
-)
+val PersonContentEquality = Equality<Person> {
+    by { name }
+    by(ComparableEquality()) { age }
+}
 
 val PersonDiffUtilItemCallback: DiffUtil.ItemCallback<Person> =
     DiffUtilDelegatingItemCallback(
@@ -216,10 +226,10 @@ data class Person(
 then the previous example can be further shortened to:
 
 ```kotlin
-val PersonContentEquality = CompositeEquality(
-    Person::name.equalsEquality,
-    Person::age.comparableEquality
-)
+val PersonContentEquality = Equality<Person> {
+    by { name }
+    by(ComparableEquality()) { age }
+}
 
 val PersonDiffUtilItemCallback: DiffUtil.ItemCallback<Person> =
     DiffItemCallbackById(
@@ -238,7 +248,8 @@ fun PersonDiffUtilCallback(oldItems: List<Person>, newItems: List<Person>): Diff
 
 The examples above were based on the `Person` class that required
 customized equality check because `age` was `BigDecimal` so calling
-`equals()` was not good enough.
+`equals()` was not good enough (because e.g. `BigDecimal("10.0")` is not
+equal to `BigDecimal("10")`)
 
 If your class doesn't need custom equality check and you can rely on
 `equals()`, e.g.

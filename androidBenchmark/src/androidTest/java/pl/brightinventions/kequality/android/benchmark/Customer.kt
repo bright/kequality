@@ -30,6 +30,15 @@ val CustomerPropertyEquality: Equality<Customer> = CompositeEquality(
     Customer::lastOrderChannel.equalsEquality
 )
 
+val CustomerDelegatingEquality: Equality<Customer> = Equality {
+    by { id }
+    by { name }
+    by { subscriptionType }
+    by(ComparableEquality()) { ageInYears }
+    by(ComparableNullableEquality()) { lastOrderAmount }
+    by { lastOrderChannel }
+}
+
 val CustomerManualEquality: Equality<Customer> = object : Equality<Customer> {
 
     override fun areEqual(o1: Customer, o2: Customer): Boolean =
@@ -42,7 +51,7 @@ val CustomerManualEquality: Equality<Customer> = object : Equality<Customer> {
                 } && o1.lastOrderChannel == o2.lastOrderChannel
 }
 
-val CustomerDelegatingEquality: Equality<Customer> = object : Equality<Customer> {
+val CustomerManuallyDelegatingEquality: Equality<Customer> = object : Equality<Customer> {
 
     private val LongEqualsEquality = EqualsEquality<Long>()
     private val StringEqualsEquality = EqualsEquality<String>()
@@ -56,10 +65,8 @@ val CustomerDelegatingEquality: Equality<Customer> = object : Equality<Customer>
                 StringEqualsEquality.areEqual(o1.name, o2.name) &&
                 SubscriptionTypeEqualsEquality.areEqual(o1.subscriptionType, o2.subscriptionType) &&
                 BigDecimalComparableEquality.areEqual(o1.ageInYears, o2.ageInYears) &&
-                BigDecimalNullableComparableEquality.areEqual(
-                    o1.lastOrderAmount,
-                    o2.lastOrderAmount
-                ) && OrderChannelEqualsEquality.areEqual(o1.lastOrderChannel, o2.lastOrderChannel)
+                BigDecimalNullableComparableEquality.areEqual(o1.lastOrderAmount, o2.lastOrderAmount) &&
+                OrderChannelEqualsEquality.areEqual(o1.lastOrderChannel, o2.lastOrderChannel)
 
 
 }
