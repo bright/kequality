@@ -27,10 +27,10 @@ repositories {
 Then, declare the dependency like:
 ```gradle
 // Base kequality features
-implementation("com.github.bright.kequality:kequality:1.2.1")
+implementation("com.github.bright.kequality:kequality:1.4.0")
 
 // Android's RecyclerView DiffUtil integration
-implementation("com.github.bright.kequality:diffutil:1.2.1")
+implementation("com.github.bright.kequality:diffutil:1.4.0")
 ```
 
 ## Usage examples ##
