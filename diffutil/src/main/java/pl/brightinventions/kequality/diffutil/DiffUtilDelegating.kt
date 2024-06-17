@@ -2,23 +2,23 @@ package pl.brightinventions.kequality.diffutil
 
 import androidx.recyclerview.widget.DiffUtil
 
-interface DiffUtilIdentityCheck<T> {
+interface DiffUtilIdentityCheck<T : Any> {
     fun areItemsTheSame(oldItem: T, newItem: T): Boolean
 }
 
-interface DiffUtilContentCheck<T> {
+interface DiffUtilContentCheck<T : Any> {
     fun areContentsTheSame(oldItem: T, newItem: T): Boolean
 }
 
-interface DiffUtilChangePayloadCreator<T> {
+interface DiffUtilChangePayloadCreator<T : Any> {
     fun getChangePayload(oldItem: T, newItem: T): Any?
 }
 
-private class NullChangePayloadCreator<T> : DiffUtilChangePayloadCreator<T> {
+private class NullChangePayloadCreator<T : Any> : DiffUtilChangePayloadCreator<T> {
     override fun getChangePayload(oldItem: T, newItem: T): Any? = null
 }
 
-class DiffUtilDelegatingItemCallback<T>(
+class DiffUtilDelegatingItemCallback<T : Any>(
     val diffUtilIdentityCheck: DiffUtilIdentityCheck<T>,
     val diffUtilContentCheck: DiffUtilContentCheck<T>,
     val diffUtilChangePayloadCreator: DiffUtilChangePayloadCreator<T> = NullChangePayloadCreator()
@@ -37,7 +37,7 @@ class DiffUtilDelegatingItemCallback<T>(
         diffUtilChangePayloadCreator.getChangePayload(oldItem, newItem)
 }
 
-class DiffUtilDelegatingCallback<T>(
+class DiffUtilDelegatingCallback<T : Any>(
     private val oldItems: Collection<T>,
     private val newItems: Collection<T>,
     private val diffUtilIdentityCheck: DiffUtilIdentityCheck<T>,
@@ -74,7 +74,7 @@ class DiffUtilDelegatingCallback<T>(
     }
 }
 
-fun <T> DiffUtilDelegatingCallback(
+fun <T : Any> DiffUtilDelegatingCallback(
     oldItems: Collection<T>,
     newItems: Collection<T>,
     diffUtilDelegatingItemCallback: DiffUtilDelegatingItemCallback<T>
