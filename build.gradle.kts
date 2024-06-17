@@ -1,5 +1,8 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 buildscript {
     repositories {
+        gradlePluginPortal()
         mavenCentral()
         google()
     }
@@ -30,6 +33,20 @@ version = Config.version
 java {
     withJavadocJar()
     withSourcesJar()
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(Config.jvmToolchain))
+    }
+    sourceCompatibility = Config.javaTargetCompatibility
+    targetCompatibility = Config.javaTargetCompatibility
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.fromTarget(Config.javaTargetCompatibility.toString())
+    }
 }
 
 dependencies {

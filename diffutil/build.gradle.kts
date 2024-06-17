@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("com.android.library")
     id("kotlin-android")
@@ -5,10 +7,33 @@ plugins {
 }
 
 android {
+    namespace = "pl.brightinventions.kequality.diffutil"
+    
     defaultConfig {
-        minSdkVersion(1)
-        compileSdkVersion(30)
-        targetSdkVersion(30)
+        minSdk = 1
+        compileSdk = 34
+        targetSdk = 34
+    }
+
+    testOptions {
+        targetSdk = 34
+    }
+
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(Config.jvmToolchain))
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = Config.javaTargetCompatibility
+        targetCompatibility = Config.javaTargetCompatibility
+    }
+
+    kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.fromTarget(Config.javaTargetCompatibility.toString())
+        }
     }
 }
 

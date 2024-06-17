@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("com.android.library")
     id("androidx.benchmark")
@@ -5,23 +7,42 @@ plugins {
 }
 
 android {
-    compileSdkVersion(30)
-    buildToolsVersion = "30.0.3"
+    namespace = "pl.brightinventions.kequality.android.benchmark"
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+    compileSdk = 34
+    buildToolsVersion = "34.0.0"
+
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(Config.jvmToolchain))
+        }
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    compileOptions {
+        sourceCompatibility = Config.javaTargetCompatibility
+        targetCompatibility = Config.javaTargetCompatibility
+    }
+
+    kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.fromTarget(Config.javaTargetCompatibility.toString())
+        }
     }
 
     defaultConfig {
-        minSdkVersion(22)
-        targetSdkVersion(30)
-
+        minSdk = 22
         testInstrumentationRunner = "androidx.benchmark.junit4.AndroidBenchmarkRunner"
+
+        setProguardFiles(
+            listOf(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "benchmark-proguard-rules.pro"
+            )
+        )
+    }
+
+    testOptions {
+        targetSdk = 34
     }
 
     signingConfigs {
@@ -33,25 +54,14 @@ android {
         }
     }
 
-    testBuildType = "release"
     buildTypes {
-        getByName("release") {
-            isDefault.set(true)
+        release {
+            isDefault = true
             signingConfig = signingConfigs.getByName("testSigning")
         }
-        getByName("debug") {
-            isDebuggable = false
-            // Since debuggable can't be modified by gradle for library modules,
-            // it must be done in a manifest - see src/androidTest/AndroidManifest.xml
-            isMinifyEnabled = true
-            setProguardFiles(
-                listOf(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "benchmark-proguard-rules.pro"
-                )
-            )
-        }
     }
+
+    testBuildType = "release"
 }
 
 dependencies {
