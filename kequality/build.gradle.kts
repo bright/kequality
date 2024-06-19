@@ -1,8 +1,7 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    kotlin("jvm")
-    `java-library`
+    alias(libs.plugins.kotlin.jvm)
     id("default-java-publish")
 }
 
@@ -29,10 +28,10 @@ kotlin {
 }
 
 dependencies {
-    implementation(platform(Dependencies.kotlinBom))
-    implementation(Dependencies.kotlinStdlib)
-    testImplementation(Dependencies.kotlinTest)
-    testImplementation(Dependencies.kotlinTestJunit)
-    testImplementation(Dependencies.shouldko)
-    testImplementation(Dependencies.kotlinReflect)
+    implementation(platform(libs.kotlin.bom))
+    implementation(libs.kotlin.stdlib)
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.kotlin.test.junit)
+    testImplementation(libs.shouldko)
+    testImplementation(libs.kotlin.reflect)
 }

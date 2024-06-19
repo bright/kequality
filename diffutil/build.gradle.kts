@@ -1,8 +1,9 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    //alias(libs.plugins.publish)
     `maven-publish`
 }
 
@@ -38,13 +39,13 @@ android {
 }
 
 dependencies {
-    api(project(":kequality"))
-    implementation(platform(Dependencies.kotlinBom))
-    implementation(Dependencies.kotlinStdlib)
-    implementation(Dependencies.recyclerView)
-    testImplementation(Dependencies.kotlinTest)
-    testImplementation(Dependencies.kotlinTestJunit)
-    testImplementation(Dependencies.shouldko)
+    api(projects.kequality)
+    implementation(platform(libs.kotlin.bom))
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.androidx.recyclerview)
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.kotlin.test.junit)
+    testImplementation(libs.shouldko)
 }
 
 afterEvaluate {

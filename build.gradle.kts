@@ -1,20 +1,5 @@
-buildscript {
-    repositories {
-        gradlePluginPortal()
-        mavenCentral()
-        google()
-    }
-    dependencies {
-        classpath(Dependencies.kotlinGradlePlugin)
-        classpath(Dependencies.androidGradlePlugin)
-        classpath(Dependencies.androidBenchmarkGradlePlugin)
-    }
-}
-
-allprojects {
-    repositories {
-        mavenCentral()
-        google()
-        maven(Repositories.jitpack)
-    }
+plugins {
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.kotlin.android) apply false
 }

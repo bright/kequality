@@ -1,9 +1,9 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    id("com.android.library")
-    id("androidx.benchmark")
-    id("kotlin-android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.benchmark)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -65,13 +65,13 @@ android {
 }
 
 dependencies {
-    implementation(project(":kequality"))
-    implementation(platform(Dependencies.kotlinBom))
-    implementation(Dependencies.kotlinStdlib)
-    androidTestImplementation(Dependencies.kotlinTest)
-    androidTestImplementation(Dependencies.kotlinTestJunit)
-    androidTestImplementation(Dependencies.shouldko)
-    androidTestImplementation(Dependencies.androidTestRunner)
-    androidTestImplementation(Dependencies.androidTestExtJunit)
-    androidTestImplementation(Dependencies.androidBenchmark)
+    implementation(projects.kequality)
+    implementation(platform(libs.kotlin.bom))
+    implementation(libs.kotlin.stdlib)
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.kotlin.test.junit)
+    testImplementation(libs.shouldko)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.benchmark)
 }
