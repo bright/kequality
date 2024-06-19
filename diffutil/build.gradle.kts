@@ -38,7 +38,7 @@ android {
 }
 
 dependencies {
-    api(rootProject)
+    api(project(":kequality"))
     implementation(platform(Dependencies.kotlinBom))
     implementation(Dependencies.kotlinStdlib)
     implementation(Dependencies.recyclerView)

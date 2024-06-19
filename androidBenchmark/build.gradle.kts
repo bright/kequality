@@ -65,7 +65,7 @@ android {
 }
 
 dependencies {
-    implementation(rootProject)
+    implementation(project(":kequality"))
     implementation(platform(Dependencies.kotlinBom))
     implementation(Dependencies.kotlinStdlib)
     androidTestImplementation(Dependencies.kotlinTest)
