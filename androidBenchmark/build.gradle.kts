@@ -1,9 +1,8 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.dev.bright.android.library)
     alias(libs.plugins.android.benchmark)
-    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -11,23 +10,6 @@ android {
 
     compileSdk = 34
     buildToolsVersion = "34.0.0"
-
-    java {
-        toolchain {
-            languageVersion.set(JavaLanguageVersion.of(Config.jvmToolchain))
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = Config.javaTargetCompatibility
-        targetCompatibility = Config.javaTargetCompatibility
-    }
-
-    kotlin {
-        compilerOptions {
-            jvmTarget = JvmTarget.fromTarget(Config.javaTargetCompatibility.toString())
-        }
-    }
 
     defaultConfig {
         minSdk = 22

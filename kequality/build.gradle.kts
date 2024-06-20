@@ -3,28 +3,13 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlin.jvm)
     id("default-java-publish")
+    alias(libs.plugins.dev.bright.kotlin.library)
 }
 
-group = Config.group
-version = Config.version
 
 java {
     withJavadocJar()
     withSourcesJar()
-}
-
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(Config.jvmToolchain))
-    }
-    sourceCompatibility = Config.javaTargetCompatibility
-    targetCompatibility = Config.javaTargetCompatibility
-}
-
-kotlin {
-    compilerOptions {
-        jvmTarget = JvmTarget.fromTarget(Config.javaTargetCompatibility.toString())
-    }
 }
 
 dependencies {

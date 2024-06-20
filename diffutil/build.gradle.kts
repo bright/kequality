@@ -1,8 +1,7 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.dev.bright.android.library)
     //alias(libs.plugins.publish)
     `maven-publish`
 }
@@ -18,23 +17,6 @@ android {
 
     testOptions {
         targetSdk = 34
-    }
-
-    java {
-        toolchain {
-            languageVersion.set(JavaLanguageVersion.of(Config.jvmToolchain))
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = Config.javaTargetCompatibility
-        targetCompatibility = Config.javaTargetCompatibility
-    }
-
-    kotlin {
-        compilerOptions {
-            jvmTarget = JvmTarget.fromTarget(Config.javaTargetCompatibility.toString())
-        }
     }
 }
 

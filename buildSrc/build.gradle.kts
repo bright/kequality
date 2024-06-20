@@ -10,7 +10,20 @@ repositories {
 }
 
 dependencies {
-    //implementation(libs.kotlin.gradlePlugin)
-    //implementation(libs.android.gradlePlugin)
+    implementation(libs.kotlin.gradlePlugin)
+    implementation(libs.android.gradlePlugin)
     //implementation(libs.gradleMavenPublishPlugin)
+}
+
+gradlePlugin {
+    plugins {
+        register("defaultAndroidLibrary") {
+            id = "dev.bright.android.library"
+            implementationClass = "DefaultAndroidLibraryPlugin"
+        }
+        register("defaultKotlinLibrary") {
+            id = "dev.bright.kotlin.library"
+            implementationClass = "DefaultKotlinLibraryPlugin"
+        }
+    }
 }

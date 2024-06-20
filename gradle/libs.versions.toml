@@ -27,8 +27,11 @@ gradleMavenPublishPlugin = { module = "com.vanniktech:gradle-maven-publish-plugi
 shouldko = { module = "com.github.miensol:shouldko", version.ref = "shouldko" }
 
 [plugins]
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm" }
+kotlin-android = { id = "org.jetbrains.kotlin.android" }
+android-library = { id = "com.android.library" }
 android-benchmark = { id = "androidx.benchmark", version.ref = "androidBenchmark" }
 publish = { id = "com.vanniktech.maven.publish", version.ref = "gradleMavenPublishPlugin" }
+
+dev-bright-android-library = { id = "dev.bright.android.library" }
+dev-bright-kotlin-library = { id = "dev.bright.kotlin.library" }
