@@ -4,9 +4,6 @@ plugins {
     id("org.jetbrains.kotlin.jvm")
 }
 
-group = Config.group
-version = Config.version
-
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(Config.jvmToolchain))

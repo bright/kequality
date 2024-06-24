@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.dev.bright.android.library)
     alias(libs.plugins.android.benchmark)
@@ -48,8 +46,6 @@ android {
 
 dependencies {
     implementation(projects.kequality)
-    implementation(platform(libs.kotlin.bom))
-    implementation(libs.kotlin.stdlib)
     testImplementation(libs.kotlin.test)
     testImplementation(libs.kotlin.test.junit)
     testImplementation(libs.shouldko)

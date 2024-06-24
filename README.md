@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/bright/kequality.svg)](https://jitpack.io/#bright/kequality)
+![build](https://github.com/bright/kequality/actions/workflows/build.yml/badge.svg?branch=master)
 
 # kequality #
 
@@ -16,21 +16,21 @@ See [Usage examples](#usage-examples) below.
 
 ## Installation ##
 
-First, add JitPack to your repositories block in Gradle build script.
+First, make sure you have Maven Central in your repositories:
 
 ```gradle
 repositories {
-    maven("https://jitpack.io")
+    mavenCentral()
 }
 ```
 
 Then, declare the dependency like:
 ```gradle
 // Base kequality features
-implementation("com.github.bright.kequality:kequality:1.4.0")
+implementation("dev.bright.kequality:kequality:1.5.0")
 
 // Android's RecyclerView DiffUtil integration
-implementation("com.github.bright.kequality:diffutil:1.4.0")
+implementation("dev.bright.kequality:diffutil:1.5.0")
 ```
 
 ## Usage examples ##
